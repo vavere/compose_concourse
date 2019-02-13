@@ -1,3 +1,23 @@
+# Lauris patches
+
+### Create keygen image
+
+```bash
+docker build -t keygen -f keygen/Dockerfile .
+```
+
+### Create and opulate named volume `keys`
+
+```bash
+docker run -it -v keys:/app/keys keygen
+```
+
+### Check created keys in `/keys`
+
+```bash
+docker run -it -v keys:/keys alpine
+```
+
 # Concourse
 
 Spin up standalone Concourse CI environment in Docker. Optionally with Vault secrets storage backend.
