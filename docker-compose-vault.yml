@@ -8,6 +8,10 @@ networks:
 volumes:
   consul-volume:
     driver: "${ENV_VOLUME_DRIVER}"
+  config-consul:
+    external: true
+  config-vault:
+    external: true
 
 services:
   vault:
@@ -23,7 +27,7 @@ services:
     depends_on:
       - consul
     volumes:
-      - ./config_vault:/vault/config
+      - config-vault:/vault/config
     networks:
       - concourse
     cap_add:
@@ -41,6 +45,6 @@ services:
       - docker-entrypoint.sh consul agent -config-dir=/consul/config
     volumes:
       - consul-volume:/consul/data
-      - ./config_consul:/consul/config
+      - config-consul:/consul/config
     networks:
       - concourse

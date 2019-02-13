@@ -18,6 +18,25 @@ docker run -it -v webkeys:/app/keys/web -v workerkeys:/app/keys/worker --rm keyg
 docker run -it -v webkeys:/keys/web -v workerkeys:/keys/worker --rm alpine
 ```
 
+### Create config image
+
+```bash
+docker build -t config -f config/Dockerfile .
+```
+
+### Copy `consul` and `vault` configration
+
+```bash
+docker run -it -v config-consul:/config/consul -v config-vault:/config/vault --rm config
+```
+
+### Check config files
+
+```bash
+docker run -it -v config-consul:/config/consul --rm config ls /config/consul -l
+docker run -it -v config-vault:/config/vault --rm config ls /config/vault -l
+```
+
 # Concourse
 
 Spin up standalone Concourse CI environment in Docker. Optionally with Vault secrets storage backend.
