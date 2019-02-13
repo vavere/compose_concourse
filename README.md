@@ -6,7 +6,7 @@
 docker build -t keygen -f keygen/Dockerfile .
 ```
 
-### Create and opulate named volume `keys`
+### Create and populate named volume `keys`
 
 ```bash
 docker run -it -v keys:/app/keys keygen
