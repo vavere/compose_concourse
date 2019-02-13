@@ -12,6 +12,10 @@ volumes:
     driver: "${ENV_VOLUME_DRIVER}"
   concourse-worker-volume:
     driver: "${ENV_VOLUME_DRIVER}"
+  webkeys:
+    external: true
+  workerkeys:
+    external: true
 
 services:
   concourse-db:
@@ -38,7 +42,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - "./keys/web:/concourse-keys"
+      - "webkeys:/concourse-keys"
       - "concourse-web-volume:/worker-state"
     environment:
       CONCOURSE_TSA_BIND_PORT: 2222
@@ -72,7 +76,7 @@ services:
     command:
       - worker
     volumes:
-      - "./keys/worker:/concourse-keys"
+      - "workerkeys:/concourse-keys"
       - "concourse-worker-volume:/worker-state"
     environment:
       CONCOURSE_TSA_HOST: concourse-web:2222

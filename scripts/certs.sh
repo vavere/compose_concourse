@@ -12,7 +12,7 @@ if [[ -d "keys" ]]; then
     echo "- Aborted"
     exit
   fi
-  rm -rf keys/
+  rm -rf keys/{web,worker}/*
 fi
 
 mkdir -p keys/web keys/worker
