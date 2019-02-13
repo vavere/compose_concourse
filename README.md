@@ -9,13 +9,13 @@ docker build -t keygen -f keygen/Dockerfile .
 ### Create and populate named volume `keys`
 
 ```bash
-docker run -it -v keys:/app/keys keygen
+docker run -it -v webkeys:/app/keys/web -v workerkeys:/app/keys/worker --rm keygen
 ```
 
 ### Check created keys in `/keys`
 
 ```bash
-docker run -it -v keys:/keys alpine
+docker run -it -v webkeys:/keys/web -v workerkeys:/keys/worker --rm alpine
 ```
 
 # Concourse

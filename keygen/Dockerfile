@@ -8,6 +8,7 @@ RUN mkdir scripts
 
 COPY scripts/certs.sh scripts
 
-VOLUME /app/scripts/keys
+VOLUME /app/keys/web
+VOLUME /app/keys/worker
 
 CMD sh scripts/certs.sh
